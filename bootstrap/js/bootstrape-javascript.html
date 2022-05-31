@@ -1,0 +1,47 @@
+<header> 
+        <h id="modal"> Modals</h>
+
+     <a href="#themodal" role="button" class="btn btn-primary" data-toggle="modal"> Launch a modal dialog</a>
+       
+        <div id="themodal" class="modal hide face">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h> Modal header</h>
+            </div>
+        <div  class="modal-body">
+            <p> Are you sure you want to do this?</p>
+            <div class="progress progress-striped">
+            <div id="doitprogress" class="bar"></div>
+            </div>
+            </div>
+        <div class="modal-footer">
+            <a href="#" class="btn" data-dismiss="modal">Close</a>
+           <a id="yesbutton" href="#" class="btn btn-primary" data-toggle="modal"> YES</a>
+            </div>
+        </div>
+        
+        <script>
+        
+    $(function) () {
+        
+        var yesButton = $("#yesbutton");
+        var theModal = $("themodal");
+        var progress = $("#doitprogress");
+        
+        yesButton.click(function () {
+          yesButton.button("loading");
+        
+        var counter = 0;
+        var countDown = function () {
+         counter++;
+        if (counter == 11) {
+        yesButton.button("reset");
+        theModal.modal("hide");
+        }
+        else {
+            progress.width(counter * 10+ "%");
+        setTimeout(countDown, 500);
+        }
+        };
+        setTimeout(countDown, 500);
+        });
